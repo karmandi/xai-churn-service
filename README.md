@@ -1,5 +1,11 @@
 # Real-Time Telco Churn XAI & Autonomous Remediation Service
 
+[![CI Regression Gate](https://github.com/karmandi/xai-churn-service/actions/workflows/ci.yml/badge.svg)](https://github.com/karmandi/xai-churn-service/actions)
+[![Python 3.11](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Pydantic_v2-009688.svg)](https://fastapi.tiangolo.com/)
+[![SHAP XAI](https://img.shields.io/badge/XAI-SHAP_TreeExplainer-orange.svg)](https://shap.readthedocs.io/)
+[![QLoRA & vLLM](https://img.shields.io/badge/LLM-Llama_3.2_3B_QLoRA_%2B_vLLM-purple.svg)](https://github.com/karmandi/xai-churn-service)
+
 > **From raw customer data to explainable predictions, safety-checked retention actions, automated quality gates, and GPU-efficient LLM serving.**
 
 This repository is a production-oriented AI engineering project built in **four incremental phases**. It is designed so both **non-technical stakeholders** (product managers, retention leads, executives) and **technical reviewers** (ML/AI engineers) can follow *what* the system does, *why* each engineering decision was made, and *how* every claim is verified.
