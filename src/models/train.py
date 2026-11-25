@@ -27,7 +27,7 @@ preprocessor = ColumnTransformer(
 
 model = Pipeline([
     ("prep", preprocessor),
-    ("clf", RandomForestClassifier(n_estimators=100, max_depth=6, random_state=42)),
+    ("clf", RandomForestClassifier(n_estimators=200, max_depth=6, random_state=42)),
 ])
 
 # 3. Fit and save artifact

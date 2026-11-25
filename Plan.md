@@ -16,9 +16,10 @@ This repository is built as a **production-grade AI engineering system**, not an
 - **Features (Scoped Baseline):** `tenure`, `MonthlyCharges`, `TotalCharges`, `Contract`, `InternetService`, `PaymentMethod`.
 - **Completed Modules:**
   - `src/data/eda.py`: Missing value & segment churn analysis.
-  - `src/models/train.py`: `ColumnTransformer` + `RandomForestClassifier` saved to `artifacts/model.joblib`.
+  - `src/models/train.py`: `ColumnTransformer` + tuned `RandomForestClassifier(n_estimators=200, max_depth=6)` saved to `artifacts/model.joblib`.
+  - `src/models/compare.py`: 5-fold stratified `GridSearchCV` comparing `RandomForestClassifier` (`0.8438`), `HistGradientBoostingClassifier` (`0.8437`), and `LogisticRegression` (`0.8388`).
   - `src/models/explainer.py`: `ChurnExplainer` computing churn probability, risk tier (`Low`/`Medium`/`High`), and top 3 `shap.TreeExplainer` attributions.
-  - `src/models/evaluate.py`: Verified `ROC-AUC: 0.8628` and SHAP directional consistency.
+  - `src/models/evaluate.py`: Verified leak-free holdout `ROC-AUC: 0.8416` (`80%` accuracy) and SHAP directional consistency.
 
 ---
 
