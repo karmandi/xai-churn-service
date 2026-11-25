@@ -1,0 +1,37 @@
+services:
+  churn-xai-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: churn-xai-api
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=production
+      - VLLM_BASE_URL=http://vllm-explainer:8001/v1
+    volumes:
+      - ./artifacts:/app/artifacts:ro
+    restart: unless-stopped
+
+  # Optional: Launch alongside API on GPU hosts via `docker compose --profile gpu up`
+  vllm-explainer:
+    image: vllm/vllm-openai:latest
+    container_name: vllm-explainer
+    profiles: ["gpu"]
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./artifacts/qlora_churn_adapter:/adapters/churn:ro
+    command: >
+      --model meta-llama/Llama-3.2-3B-Instruct
+      --enable-lora
+      --lora-modules churn-explainer=/adapters/churn
+      --max-model-len 2048
+      --gpu-memory-utilization 0.85
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
