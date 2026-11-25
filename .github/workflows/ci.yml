@@ -24,6 +24,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Generate synthetic dataset if IBM CSV is absent
+        run: |
+          if [ ! -f data/churn.csv ]; then
+            python -m src.data.synthetic
+          fi
+
       - name: Train baseline model if artifact is absent
         run: |
           if [ ! -f artifacts/model.joblib ]; then
